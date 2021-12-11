@@ -3,6 +3,7 @@
 namespace App\Controllers;
 use App\Models\ArticleModel;
 use App\Models\ArticleAlbumModel;
+use App\Models\BannerModel;
 
 class Blog extends BaseController
 {
@@ -10,12 +11,14 @@ class Blog extends BaseController
 	{
         helper('text');
         $model1 = new ArticleModel();
+        $model2 = new BannerModel();
 
         $data = [
             'title' => 'บล็อกทั้งหมด',
             'type' => 'blog',
             'info' => $model1->where(['type'=>'blog','status'=>'1'])->paginate(12),
-            'pager' => $model1->pager
+            'pager' => $model1->pager,
+            'banner' => $model2->where(['page'=>'blog','status'=>'1'])->first()
         ];
 
         //print_r($data['info']);

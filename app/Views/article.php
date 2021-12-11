@@ -4,7 +4,7 @@
 
 <div class="single-article single-post">
     <div class="banner">
-        <img src="<?= site_url('assets/images/banner-home.jpg') ?>" alt="wat nong waeng">
+        <img src="<?= (is_file($banner['banner'])?site_url($banner['banner']):site_url('assets/images/img-default.jpg')) ?>" alt="wat nong waeng">
     </div>
 
     <div class="container">

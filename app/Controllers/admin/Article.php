@@ -177,6 +177,7 @@ class Article extends Controller
                     }
                 }
                 
+                return redirect()->to('admin/article/'.$post['hd_type']);
             }else{
                 $data = [
                     'active' => $post['hd_type'],
@@ -186,7 +187,7 @@ class Article extends Controller
 
                 echo view('admin/article-form',$data);
             }
-            return redirect()->to('admin/article/'.$post['hd_type']);
+            
         }else{
             return redirect()->to('admin/article/news');
         }

@@ -1,3 +1,8 @@
+<?php
+    $uri = service('uri');
+    $segment2 = $uri->getSegment(2);
+?>
+
 <header class="app-header fixed-top">	   	            
     <div class="app-header-inner">  
         <div class="container-fluid py-2">
@@ -45,24 +50,24 @@
             <nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
                 <ul class="app-menu list-unstyled accordion" id="menu-accordion">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= site_url('admin/dashboard') ?>">
+                        <a class="nav-link <?= ($segment2=='dashboard'?'active':'') ?>" href="<?= site_url('admin/dashboard') ?>">
                             <span class="nav-icon">
                                 <i class="fas fa-home"></i>
                             </span>
                             <span class="nav-link-text">Dashboard</span>
-                        </a><!--//nav-link-->
-                    </li><!--//nav-item-->
+                        </a>
+                    </li>
                     
                     <li class="nav-item has-submenu">
-                        <a class="nav-link submenu-toggle active" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
+                        <a class="nav-link submenu-toggle <?= ($segment2=='article'?'active':'') ?>" href="#" data-bs-toggle="collapse" data-bs-target="#submenu-1" aria-expanded="false" aria-controls="submenu-1">
                             <span class="nav-icon">
                                 <i class="far fa-newspaper"></i>
                             </span>
                             <span class="nav-link-text">บทความ</span>
                             <span class="submenu-arrow">
                                 <i class="fas fa-chevron-down"></i>
-                            </span><!--//submenu-arrow-->
-                        </a><!--//nav-link-->
+                            </span>
+                        </a>
                         
                         <div id="submenu-1" class="collapse submenu submenu-1 <?= ($segment2=='article'?'show':'') ?>" data-bs-parent="#menu-accordion">
                             <ul class="submenu-list list-unstyled">
@@ -71,26 +76,44 @@
                                 <li class="submenu-item"><a class="submenu-link <?= ($active=='blog'?'active':'') ?>" href="<?= site_url('admin/article/blog') ?>">บล็อก</a></li>
                             </ul>
                         </div>
-                    </li><!--//nav-item-->
+                    </li>
                     
-                </ul><!--//app-menu-->
-            </nav><!--//app-nav-->
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($segment2=='banner'?'active':'') ?>" href="<?= site_url('admin/banner') ?>">
+                            <span class="nav-icon">
+                                <i class="far fa-images"></i>
+                            </span>
+                            <span class="nav-link-text">แบนเนอร์</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link <?= ($segment2=='account'?'active':'') ?>" href="<?= site_url('admin/account') ?>">
+                            <span class="nav-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </span>
+                            <span class="nav-link-text">แอดมิน</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </nav>
 
             <div class="app-sidepanel-footer">
                 <nav class="app-nav app-nav-footer">
                     <ul class="app-menu footer-menu list-unstyled">
                         <li class="nav-item">
-                            <a class="nav-link" href="settings.html">
+                            <a class="nav-link" href="<?= site_url('admin/setting') ?>">
                                 <span class="nav-icon">
                                     <i class="fas fa-cog"></i>
                                 </span>
                                 <span class="nav-link-text">Settings</span>
-                            </a><!--//nav-link-->
-                        </li><!--//nav-item-->                        
-                    </ul><!--//footer-menu-->
+                            </a>
+                        </li>                        
+                    </ul>
                 </nav>
-            </div><!--//app-sidepanel-footer-->
+            </div>
             
-        </div><!--//sidepanel-inner-->
-    </div><!--//app-sidepanel-->
-</header><!--//app-header-->
+        </div>
+    </div>
+</header>

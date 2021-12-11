@@ -2,16 +2,7 @@
     $(document).ready(function () {
         $('.submenu-arrow').on('click',function(){
             $(this).find('i').toggleClass('fa-chevron-up');
-        });
-
-        // Ckediter 
-        CKEDITOR.replace( 'txt_desc', {
-            language: 'th',
-            height: '500px',
-            filebrowserBrowseUrl: '<?= site_url('assets/ckfinder/ckfinder.html') ?>',
-            filebrowserUploadUrl: '<?= site_url('assets/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files') ?>',
-            removeDialogTabs: 'image:advanced;link:advanced'
-        });
+        });        
 
         //display profile image
         $("#txt_thumbnail").change(function () {
@@ -33,6 +24,14 @@
             }
         });
 
+        $('#ddl_page').on('change',function(){
+            var val = $(this).val();
+            if(val == 'home'){
+                $('#img-request').html('*ขนาดรูปที่ต้องการ 1920 x 700 px');
+            }else{
+                $('#img-request').html('*ขนาดรูปที่ต้องการ 1920 x 300 px')
+            }
+        });
     });
 
     function readURL(input) {

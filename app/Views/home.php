@@ -4,7 +4,7 @@
     
     <div class="home-body mb-5">
         <section class="banner">
-            <img src="<?= site_url('assets/images/banner-home.jpg') ?>" alt="">
+            <img src="<?= (is_file($banner['banner'])?site_url($banner['banner']):site_url('assets/images/img-default.jpg')) ?>" alt="wat nong waeng">
         </section>
 
         <section class="sect-blog">

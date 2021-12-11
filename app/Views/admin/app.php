@@ -44,5 +44,6 @@
 
     <!-- Load custom script -->
     <?= $this->include('admin/script') ?>
+    <?= $this->renderSection('script') ?>
 </body>
 </html>

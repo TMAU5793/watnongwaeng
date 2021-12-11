@@ -74,4 +74,7 @@ body {
       transition: all .25s;
       font-size: 1.25rem; }
 
+.app-card-account .item .profile-image {
+  object-fit: cover; }
+
 /*# sourceMappingURL=backoffice.css.map */

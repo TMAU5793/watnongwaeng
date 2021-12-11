@@ -1,0 +1,23 @@
+@include media-max(767px) {
+    .absolute-center {
+        position: static;
+        padding: 0;
+        margin-top: 1rem;
+        transform: unset;
+    }
+    .order-1{
+        order: 1;
+    }
+    .order-2{
+        order: 2;
+    }
+    .home-body .sect-news .row .col-md-6:first-child{
+        padding: 0;
+    }
+}
+
+@include media-max(575px) {
+    .home-body .sect-news .row .col-md-6:first-child{
+        padding: 0 15px;
+    }
+}

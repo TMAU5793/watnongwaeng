@@ -1,0 +1,24 @@
+$c-orange-1 : #e6c6ad;
+$c-orange-2 : #cf9776;
+$c-orange-3 : #c96533;
+$c-orange-4 : #885224;
+$c-yellow : #936601;
+@mixin media-max($length) {
+    @media (max-width: $length) {
+        @content;
+    }
+}
+@import 'nav';
+@import 'main';
+@import 'responsive';
+
+body{
+    font-family: 'sarabun-regular';
+}
+
+.ff-bold{
+    font-family: 'sarabun-bold';
+}
+.ff-medium{
+    font-family: 'sarabun-medium';
+}

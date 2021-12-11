@@ -1,0 +1,22 @@
+.navbar-nav{
+    .nav-item{
+        font-weight: 700;
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        .nav-link{
+            color: $c-orange-4;
+            &:hover{
+                color: $c-orange-3;
+            }
+        }
+        .nav-link.active{
+            color: $c-orange-3;
+        }
+    }
+    .navbar-toggler{
+        outline: none;
+        &:focus{
+            box-shadow: none !important;
+        }
+    }
+}

@@ -23,8 +23,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	//public $baseURL = 'http://localhost/watnongwaeng/';
-	public $baseURL = 'https://grasp.asia/watnongwaeng/';
+	public $baseURL = 'http://localhost/watnongwaeng/';
+	//public $baseURL = 'http://saemua.com/watnongwaeng/';
 
 	/**
 	 * --------------------------------------------------------------------------

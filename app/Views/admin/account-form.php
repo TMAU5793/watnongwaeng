@@ -33,7 +33,7 @@
                                             <div class="col-auto">
                                                 <div class="item-label mb-2"><strong>Photo</strong></div>
                                                 <div class="item-data">
-                                                    <img class="profile-image rounded-circle" id="thumb-img" src="<?= (is_file($img['profile'])?site_url($img['profile']):site_url('assets/images/img-default.jpg')) ?>" alt="">
+                                                    <img class="profile-image rounded-circle" id="thumb-img" src="<?= (is_file($info['profile'])?site_url($info['profile']):site_url('assets/images/img-default.jpg')) ?>" alt="">
                                                 </div>
                                             </div><!--//col-->
                                             <div class="col text-end">

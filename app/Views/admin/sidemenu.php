@@ -1,6 +1,13 @@
 <?php
     $uri = service('uri');
     $segment2 = $uri->getSegment(2);
+
+    $profie = session()->get('admindata')['profile'];
+    if($profie){
+        $profie = (is_file($profie)?site_url($profie):site_url('assets/images/img-default.jpg'));
+    }else{
+        $profie = site_url('assets/images/img-default.jpg');
+    }
 ?>
 
 <header class="app-header fixed-top">	   	            
@@ -21,7 +28,7 @@
                 <div class="app-utilities col-auto">                    
                     <div class="app-utility-item app-user-dropdown dropdown">
                         <a class="dropdown-toggle" id="user-dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">
-                            <img src="<?= site_url('assets/images/favicon.png') ?>" alt="user profile">
+                            <img src="<?= $profie ?>" alt="user profile">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
                             <li><a class="dropdown-item" href="<?= site_url('admin/account') ?>">Account</a></li>
@@ -40,9 +47,9 @@
         <div id="sidepanel-drop" class="sidepanel-drop"></div>
         <div class="sidepanel-inner d-flex flex-column">
             <a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
-            <div class="app-branding">
+            <div class="app-branding">                
                 <a class="app-logo" href="<?= site_url('admin/dashboard') ?>">
-                    <img class="logo-icon me-2" src="<?= site_url('assets/images/favicon.png') ?>" alt="logo"><span class="logo-text">Admin</span>
+                    <img class="logo-icon me-2 rounded-circle" src="<?= $profie ?>" alt="logo"><span class="logo-text">Admin</span>
                 </a>
 
             </div><!--//app-branding-->  

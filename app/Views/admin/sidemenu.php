@@ -24,10 +24,10 @@
                             <img src="<?= site_url('assets/images/favicon.png') ?>" alt="user profile">
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="user-dropdown-toggle">
-                            <li><a class="dropdown-item" href="account.html">Account</a></li>
-                            <li><a class="dropdown-item" href="settings.html">Settings</a></li>
+                            <li><a class="dropdown-item" href="<?= site_url('admin/account') ?>">Account</a></li>
+                            <li><a class="dropdown-item" href="<?= site_url('admin/setting') ?>">Settings</a></li>
                             <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item" href="login.html">Log Out</a></li>
+                            <li><a class="dropdown-item" href="<?= site_url('admin/login/logout') ?>">Log Out</a></li>
                         </ul>
                     </div><!--//app-user-dropdown--> 
                 </div><!--//app-utilities-->

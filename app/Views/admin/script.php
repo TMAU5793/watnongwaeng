@@ -9,6 +9,10 @@
             readURL(this);
         });
 
+        $("#thumbnail_mobile").change(function () {
+            readURLMobile(this);
+        });
+
         //display album image
         $("#file_album").change(function () {
             var limit = 20;
@@ -28,9 +32,22 @@
             var val = $(this).val();
             if(val == 'home'){
                 $('#img-request').html('*ขนาดรูปที่ต้องการ 1920 x 700 px');
+                $('#img-request_mobile').html('*ขนาดรูปที่ต้องการ 600 x 400 px');
             }else{
                 $('#img-request').html('*ขนาดรูปที่ต้องการ 1920 x 300 px')
+                $('#img-request_mobile').html('*ขนาดรูปที่ต้องการ 600 x 200 px');
             }
+        });
+        var n = 0;
+        $('#change-password').on('click',function(){
+            if(n==0){
+                $('.pwd').removeAttr('disabled');
+                n = 1;
+            }else{
+                $('.pwd').attr('disabled','disabled');
+                n = 0;
+            }
+            $('.text-password').toggleClass('d-none');
         });
     });
 
@@ -40,6 +57,17 @@
             reader.onload = function (e) {
                 $('#thumb-img').attr('src', e.target.result);
                 $('#hd_thumb').val(input.files[0].name);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    function readURLMobile(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#thumb-img-mobile').attr('src', e.target.result);
+                $('#hd_thumb_mobile').val(input.files[0].name);
             }
             reader.readAsDataURL(input.files[0]);
         }

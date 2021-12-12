@@ -8,6 +8,10 @@ class Setting extends Controller
 {
 	public function index()
 	{
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $model = new SettingModel();
         $data = [
             'info' => $model->first()
@@ -17,6 +21,10 @@ class Setting extends Controller
 
     public function save()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+        
         $model = new SettingModel();
         $request = service('request');
 

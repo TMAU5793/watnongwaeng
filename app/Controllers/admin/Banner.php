@@ -8,6 +8,10 @@ class Banner extends Controller
 {
 	public function index()
 	{
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $model = new BannerModel();
         $data = [
             'info' => $model->paginate(25),
@@ -19,11 +23,19 @@ class Banner extends Controller
 
     public function form()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         return view('admin/banner-form');
     }
 
     public function edit()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $request = service('request');
         $model = new BannerModel();
 
@@ -37,6 +49,10 @@ class Banner extends Controller
 
     public function save()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+        
         helper(['form','filesystem','text']);
         $request = service('request');
         $model = new BannerModel();
@@ -61,6 +77,7 @@ class Banner extends Controller
             ];
             if($this->validate($rules)){
                 $thumb = $request->getFile('txt_thumbnail'); //เก็บไฟล์รูปอัพโหลด
+                $thumbmobile = $request->getFile('thumbnail_mobile'); //เก็บไฟล์รูปอัพโหลด
                 $allowed = ['png','jpg','jpeg']; //ไฟล์รูปที่อนุญาติให้อัพโหลด
                 $ext = $thumb->getExtension();
                 
@@ -90,11 +107,32 @@ class Banner extends Controller
                     }
                     if (!is_dir('uploads/banner')) {
                         mkdir('uploads/banner', 0777, TRUE);
-                        $this->thumbnail($id,$thumb,$w,$h,'uploads/banner'); //id,file,width,height,path                        
+                        $this->thumbnail($id,$thumb,$w,$h,'uploads/banner','desktop'); //id,file,width,height,path
                     }else{
-                        $this->thumbnail($id,$thumb,$w,$h,'uploads/banner'); //id,file,width,height,path                        
+                        $this->thumbnail($id,$thumb,$w,$h,'uploads/banner','desktop'); //id,file,width,height,path
                     }                    
                 }
+
+                if ($thumbmobile->isValid() && !$thumbmobile->hasMoved()){
+                    $hd_tuumb = $post['hd_thumb_mobile'];
+                    $file_del = $post['hd_thumb_mobile_del']; //เก็บค่าใว้เช็คถ้ามีรูปอยู่ ให้ลบรูป
+                    if(is_file($file_del) && $hd_tuumb!=$file_del){
+                        unlink($file_del); //ลบรูปเก่าออก
+                    }
+
+                    $w = 600;
+                    $h = 200;
+                    if($post['ddl_page'] == 'home'){
+                        $h = 400;
+                    }
+                    if (!is_dir('uploads/banner')) {
+                        mkdir('uploads/banner', 0777, TRUE);
+                        $this->thumbnail($id,$thumb,$w,$h,'uploads/banner','mobile'); //id,file,width,height,path
+                    }else{
+                        $this->thumbnail($id,$thumb,$w,$h,'uploads/banner','mobile'); //id,file,width,height,path
+                    }                    
+                }
+
                 return redirect()->to('admin/banner');
             }else{
                 $data = [
@@ -109,19 +147,25 @@ class Banner extends Controller
         }
     }
 
-    public function thumbnail($id,$file,$w,$h,$path)
+    public function thumbnail($id,$file,$w,$h,$path,$size)
     {
         $model = new BannerModel();
         $newName = $id.'-'.$file->getRandomName();
+        $namemobile = 'mobile-'.$id.'-'.$file->getRandomName();
 
-        $image = \Config\Services::image()
-        ->withFile($file)
-        ->fit($w, $h, 'center')
-        ->save($path.'/'.$newName);
+        $image = \Config\Services::image();
 
-        $thumb = [
-            'banner' => $path.'/'.$newName
-        ];
+        if($size=='desktop'){
+            $image->withFile($file)->fit($w, $h, 'center')->save($path.'/'.$newName);
+            $thumb = [
+                'banner' => $path.'/'.$newName,
+            ];
+        }else{
+            $image->withFile($file)->fit($w, $h, 'center')->save($path.'/'.$namemobile);
+            $thumb = [
+                'banner_mobile' => $path.'/'.$namemobile,
+            ];
+        }
         $model->update($id, $thumb);
     }
 }

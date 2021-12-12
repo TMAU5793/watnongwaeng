@@ -18,6 +18,10 @@ class Article extends Controller
 
 	public function index()
 	{
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+        
 		$model = new ArticleModel();
         $data = [
             'active' => 'news',
@@ -31,6 +35,10 @@ class Article extends Controller
 
     public function news()
 	{
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $model = new ArticleModel();
         $data = [
             'active' => 'news',
@@ -44,6 +52,10 @@ class Article extends Controller
 
     public function activity()
 	{
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $model = new ArticleModel();
         $data = [
             'active' => 'activity',
@@ -56,6 +68,10 @@ class Article extends Controller
 
     public function blog()
 	{
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $model = new ArticleModel();
         $data = [
             'active' => 'blog',
@@ -68,6 +84,10 @@ class Article extends Controller
 
     public function form()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $request = service('request');
         $u = $request->getGet('u');
         $data = [
@@ -79,6 +99,10 @@ class Article extends Controller
 
     public function edit()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         $request = service('request');
         $model = new ArticleModel();
         $album = new ArticleAlbumModel();
@@ -96,6 +120,10 @@ class Article extends Controller
 
     public function save()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+
         helper(['form','filesystem','text']);
         $request = service('request');
         $model = new ArticleModel();
@@ -239,6 +267,10 @@ class Article extends Controller
 
     public function deleteAlbum()
     {
+        if(!session()->get('admindata')){
+            return redirect()->to(site_url('admin'));
+        }
+        
         $request = service('request');
         $model = new ArticleAlbumModel();
         $id = $request->getPost('id');

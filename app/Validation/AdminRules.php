@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Validation;
-use App\Models\UserModel;
+use App\Models\AdminModel;
 
 class AdminRules
 {
@@ -11,19 +11,19 @@ class AdminRules
 	// }
 
 	public function checkedPassword(string $str, string $fields, array $data){
-		$model = new UserModel();
-		$password = $model->where('account', $data['adminEmail'])->first();
+		$model = new AdminModel();
+		$password = $model->where('account', $data['txt_account'])->first();
 	
 		if(!$password){
 		  	return false;
 		}else{
-			return password_verify($data['adminPassword'], $password['password']);
+			return password_verify($data['txt_password'], $password['password']);
 		}
 	}
 
 	public function checkedEmail(string $str, string $fields, array $data){
-		$model = new UserModel();
-		$email = $model->where('account', $data['adminEmail'])->first();
+		$model = new AdminModel();
+		$email = $model->where('account', $data['txt_account'])->first();
 	
 		if(!$email){
 		  	return false;
@@ -33,8 +33,8 @@ class AdminRules
 	}
 
 	public function checkedStatus(string $str, string $fields, array $data){
-		$model = new UserModel();
-		$status = $model->where(['account'=>$data['adminEmail'],'status'=>'1'])->first();
+		$model = new AdminModel();
+		$status = $model->where(['account'=>$data['txt_account'],'status'=>'1'])->first();
 	
 		if(!$status){
 		  	return false;

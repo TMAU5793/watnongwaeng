@@ -35,6 +35,9 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->get('lang/{locale}', 'Language::index');
 
+
+//Admin route
+$routes->get('admin', 'admin/Login::index');
 /*
  * --------------------------------------------------------------------
  * Additional Routing

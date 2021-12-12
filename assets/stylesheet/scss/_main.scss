@@ -193,7 +193,7 @@ img {
 .single-article {
     .banner {
         img {
-            height: 250px;
+            max-height: 250px;
             object-fit: cover;
         }
     }
@@ -245,4 +245,21 @@ img {
             }
         }
     }
+}
+
+.contact-body {
+    .col-map {
+        iframe {
+            width: 100%;
+            height: 650px;
+        }
+    }
+}
+
+.hide-575 {
+    display: block;
+}
+
+.show-575 {
+    display: none;
 }
